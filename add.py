@@ -7,6 +7,9 @@ from utils import print_divider
 from utils import ask
 from utils import handle_the
 from utils import without_starting_the
+from utils import yes_no
+from utils import rate
+from utils import watched_on
 
 scope = ['https://spreadsheets.google.com/feeds',
          'https://www.googleapis.com/auth/drive']
@@ -25,22 +28,18 @@ viewers = ['Aya', 'Azat']
 
 for viewer in viewers:
   print_divider()
-  watched = ask(f'Did {viewer} watch it? (y/n) > ')
-  if watched:
-    rating = input(f"What is {viewer}'s rating? (0-10) > ")
+  rating = rate(viewer)
+  if rating:
     sheet_row.append(rating)
-    is_fav = input(f"Mark it as {viewer}'s favorite? (Yes/No) > ")
+    is_fav = yes_no(f"Mark it as {viewer}'s favorite?")
     sheet_row.append(is_fav)
-    watched_today = ask(f"Did {viewer} watch it today? (y/n) > ")
-    if watched_today:
-      sheet_row.append(datetime.today().strftime('%d.%m.%Y'))
-    else:
-      watch_date = input(f'Please enter the date for {viewer}. (dd.mm.yyyy) > ')
-      sheet_row.append(watch_date)
+    watch_day = watched_on(viewer)
+    sheet_row.append(watch_day)
   else:
-    sheet_row.append("")
-    sheet_row.append("")
-    sheet_row.append("")
+    sheet_row.append('')
+    sheet_row.append('')
+    sheet_row.append('')
+
 
 print_divider()
 print("Here is the result:")
