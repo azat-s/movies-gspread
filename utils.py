@@ -11,7 +11,8 @@ def ask(question):
     answer = input('[↩ / n] > ').lower()
     return answer == ''
 
-def yes_no(question):
+def add_fav(viewer):
+    question = f"Mark it as {viewer}'s favorite?"
     options = ['Yes', 'No']
     choice = enquiries.choose(question, options)
     return choice

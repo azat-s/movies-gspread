@@ -3,13 +3,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 import re
 from datetime import datetime
 from scrape import get_movie_data
-from utils import print_divider
-from utils import ask
-from utils import handle_the
-from utils import without_starting_the
-from utils import yes_no
-from utils import rate
-from utils import watched_on
+from utils import print_divider, ask, handle_the, without_starting_the, add_fav, rate, watched_on
 
 scope = ['https://spreadsheets.google.com/feeds',
          'https://www.googleapis.com/auth/drive']
@@ -31,7 +25,7 @@ for viewer in viewers:
   rating = rate(viewer)
   if rating:
     sheet_row.append(rating)
-    is_fav = yes_no(f"Mark it as {viewer}'s favorite?")
+    is_fav = add_fav(viewer)
     sheet_row.append(is_fav)
     watch_day = watched_on(viewer)
     sheet_row.append(watch_day)
