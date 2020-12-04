@@ -1,0 +1,5 @@
+requests==2.25.0
+beautifulsoup4==4.9.3
+enquiries==0.1.0
+gspread==3.6.0
+oauth2client==4.1.3
